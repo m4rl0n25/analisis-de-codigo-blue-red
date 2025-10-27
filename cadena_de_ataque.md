@@ -35,18 +35,18 @@ flowchart LR
     A[/"Medio extraíble\nT1091 / T1204"/]
   end
 
-  subgraph Collection [Collection / Execution]
+  subgraph Collection [Execution]
     direction TB
     B[/"Keylogging\nT1056.001\n(entrada)"/]
     C[/"Captura de vídeo\nT1125\n(dispositivo de cámara)"/]
   end
 
-  subgraph Discovery [Discovery]
+  subgraph Discovery [Descubrimiento]
     direction TB
     D[/"System & Network\nT1082 / T1016\n(info de sistema y red)"/]
   end
 
-  subgraph Exfiltration [Exfiltration]
+  subgraph Exfiltration [Exfiltracion]
     direction TB
     E[/"SMTP / Mail\nT1048 / T1071.003\n(exfiltración)"/]
   end
