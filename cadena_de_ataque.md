@@ -76,7 +76,7 @@ flowchart LR
   style Artifacts font-size:24px;
 
   %% Fondos por táctica
-  style Initial_Access fill:#ffffff,stroke:#e67e22,stroke-width:1px;
+  style Initial_Access fill:#000000,stroke:#e67e22,stroke-width:1px;
   style Collection fill:#e8f6ff,stroke:#1f78b4,stroke-width:1px;
   style Discovery fill:#f0f5e6,stroke:#2e8b57,stroke-width:1px;
   style Exfiltration fill:#fff0f0,stroke:#c0392b,stroke-width:1px;
