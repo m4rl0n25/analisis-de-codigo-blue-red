@@ -65,7 +65,7 @@ flowchart LR
   E --> F
 
   %% Estilo de nodos (texto más grande y oscuro)
-  classDef box fill:#ffffff,stroke:#333,stroke-width:1px,font-size:24px,color:#111111,padding:10px;
+  classDef box fill:#ffffff,stroke:#333,stroke-width:1px,font-size:24px,color:#000000,padding:10px;
   class A,B,C,D,E,F box;
 
   %% Estilo títulos subgráficos
