@@ -1,7 +1,7 @@
 # Cadena de ataque (USB → exfiltración) — Diagrama interactivo
 
 > Diagrama mermaid que muestra la secuencia de tácticas y técnicas (MITRE ATT&CK).
-> Si no se renderiza en tu GitHub, prueba en https://mermaid.live/ o habilita Mermaid en tu visor de Markdown.
+
 
 ```mermaid
 flowchart LR
