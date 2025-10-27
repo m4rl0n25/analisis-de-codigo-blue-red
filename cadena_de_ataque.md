@@ -32,34 +32,47 @@ El siguiente mapeo usa el **framework MITRE ATT&CK** para identificar tácticas 
 
 ```mermaid
 flowchart LR
-  %% Nodos principales
-  A[/"Removable Media\nInitial Access\nT1091 / T1204"/]
-  B[/"Keylogging\nInput Capture / Keylogging\nT1056.001\n(pynput.keyboard)"/]
-  C[/"Video Capture\nVideo Capture\nT1125\n(cv2.VideoCapture -> .mp4)"/]
-  D[/"System & Network Discovery\nT1082 / T1016\n(psutil, platform, socket)"/]
-  E[/"Exfiltration via SMTP\nT1048 / T1071.003\n(smtplib -> smtp.gmail.com:587)"/]
-  F[/"Artefactos / IoCs\nData_Video, Data_Archivo_txt, .pickle, credenciales en claro"/]
+  subgraph Initial_Access [Initial Access]
+    direction TB
+    A[/"Medio extraíble\nT1091 / T1204"/]
+  end
 
-  %% Flujo
-  A -->|Usuario conecta y ejecuta| B
+  subgraph Collection [Collection / Execution]
+    direction TB
+    B[/"Keylogging\nT1056.001\n(pynput)"/]
+    C[/"Captura de vídeo\nT1125\n(cv2 → .mp4)"/]
+  end
+
+  subgraph Discovery [Discovery]
+    direction TB
+    D[/"System & Network\nT1082 / T1016\n(psutil, platform, socket)"/]
+  end
+
+  subgraph Exfiltration [Exfiltration]
+    direction TB
+    E[/"SMTP / Mail\nT1048 / T1071.003\n(smtplib)"/]
+  end
+
+  subgraph Artifacts [Artefactos / IoCs]
+    direction TB
+    F[/"Data_Video, .txt, .pickle,\ncredenciales en claro"/]
+  end
+
+  %% Flujo y estilos
+  A --> B
   B --> C
   B --> D
   C --> D
   D --> E
   E --> F
 
-  %% Estilos
-  classDef access fill:#fdebd0,stroke:#e67e22,stroke-width:1px;
-  classDef collection fill:#e8f6ff,stroke:#1f78b4,stroke-width:1px;
-  classDef discovery fill:#f0f5e6,stroke:#2e8b57,stroke-width:1px;
-  classDef exfil fill:#fff0f0,stroke:#c0392b,stroke-width:1px;
-  classDef artifacts fill:#f7f7f7,stroke:#95a5a6,stroke-width:1px,font-style:italic;
+  classDef box fill:#ffffff,stroke:#333,stroke-width:1px,font-size:18px,padding:10px;
+  class A,B,C,D,E,F box;
 
-  class A access;
-  class B collection;
-  class C collection;
-  class D discovery;
-  class E exfil;
-  class F artifacts;
+  style Initial_Access fill:#fdebd0,stroke:#e67e22,stroke-width:1px;
+  style Collection fill:#e8f6ff,stroke:#1f78b4,stroke-width:1px;
+  style Discovery fill:#f0f5e6,stroke:#2e8b57,stroke-width:1px;
+  style Exfiltration fill:#fff0f0,stroke:#c0392b,stroke-width:1px;
+  style Artifacts fill:#f7f7f7,stroke:#95a5a6,stroke-width:1px;
 
-  linkStyle default stroke:#777,stroke-width:1px;
+  linkStyle default stroke:#444,stroke-width:2px;
