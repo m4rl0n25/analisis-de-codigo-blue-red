@@ -25,8 +25,8 @@ El siguiente mapeo usa el **framework MITRE ATT&CK** para identificar tácticas 
 
 ---
 
-## 🧠 Diagrama de cadena de ataque (Mermaid)
-> GitHub soporta Mermaid en bloques de código. Pega el bloque tal cual en tu README para renderizado.
+## 🧠 Diagrama de cadena de ataque 
+
 
 ```mermaid
 flowchart LR
