@@ -1,6 +1,6 @@
 # 🧠 Guía de Respuesta por Incidente
 
-Este cuadro resume las **acciones inmediatas** y las **acciones recomendadas a largo plazo** ante la ejecución de un script malicioso tipo *keylogger + grabador de webcam + exfiltrador SMTP*.
+Este cuadro resume las **acciones inmediatas** ante la ejecución de un script malicioso tipo *keylogger + grabador de webcam + exfiltrador SMTP*.
 
 ---
 
