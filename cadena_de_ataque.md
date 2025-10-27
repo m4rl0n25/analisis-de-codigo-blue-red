@@ -30,7 +30,7 @@ El siguiente mapeo usa el **framework MITRE ATT&CK** para identificar tácticas 
 
 ```mermaid
 flowchart LR
-  subgraph Initial_Access [Initial Access]
+  subgraph Initial_Access [Acceso inicial]
     direction TB
     A[/"Medio extraíble\nT1091 / T1204"/]
   end
