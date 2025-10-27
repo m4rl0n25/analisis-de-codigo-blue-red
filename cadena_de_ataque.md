@@ -69,11 +69,11 @@ flowchart LR
   class A,B,C,D,E,F box;
 
   %% Estilo títulos subgráficos
-  style Initial_Access font-size:20px;
-  style Collection font-size:20px;
-  style Discovery font-size:20px;
-  style Exfiltration font-size:20px;
-  style Artifacts font-size:20px;
+  style Initial_Access font-size:18px;
+  style Collection font-size:18px;
+  style Discovery font-size:18px;
+  style Exfiltration font-size:18px;
+  style Artifacts font-size:18px;
 
   %% Fondos por táctica
   style Initial_Access fill:#000000,stroke:#e67e22,stroke-width:1px;
