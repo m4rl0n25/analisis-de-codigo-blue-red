@@ -1,11 +1,38 @@
-# Cadena de ataque (USB → exfiltración) — Diagrama interactivo
+# 🧩 Análisis de cadena de ataque — Basado en MITRE ATT&CK
 
-> Diagrama mermaid que muestra la secuencia de tácticas y técnicas (MITRE ATT&CK).
+## 📘 Resumen ejecutivo
+Este análisis describe una cadena de ataque donde un **script malicioso** llega al sistema a través de una **memoria USB**.  
+Al ser ejecutado, realiza las siguientes acciones:
 
+- Captura de teclas (keylogger con `pynput`)
+- Grabación de video con la cámara (`cv2.VideoCapture`)
+- Recolección de información del sistema y red (`psutil`, `platform`, `socket`)
+- Exfiltración de los datos por correo (`smtplib` → `smtp.gmail.com:587`)
+
+El siguiente mapeo usa el **framework MITRE ATT&CK** para identificar tácticas y técnicas empleadas.
+
+---
+
+## 🎯 Secuencia de tácticas y técnicas (MITRE ATT&CK)
+
+| # | Táctica | Técnica (ID) | Descripción | Evidencia / Función en el script |
+|---|----------|---------------|-------------|----------------------------------|
+| 1 | **Initial Access** | [T1091 – Removable Media](https://attack.mitre.org/techniques/T1091/) / [T1204 – User Execution](https://attack.mitre.org/techniques/T1204/) | El código llega por USB y se ejecuta manualmente por el usuario. | Ejecución de `script.py` desde unidad extraíble. |
+| 2 | **Collection / Execution** | [T1056.001 – Input Capture: Keylogging](https://attack.mitre.org/techniques/T1056/001/) | Registro de pulsaciones del teclado con `pynput.keyboard`. | Genera archivos `.pickle` o `.txt` con las teclas capturadas. |
+| 3 | **Collection** | [T1125 – Video Capture](https://attack.mitre.org/techniques/T1125/) | Captura de video desde la cámara del sistema. | `cv2.VideoCapture(0)` → crea `.mp4` en `Data_Video/`. |
+| 4 | **Discovery** | [T1082 – System Info Discovery](https://attack.mitre.org/techniques/T1082/) / [T1016 – Network Configuration Discovery](https://attack.mitre.org/techniques/T1016/) | Recolección de datos del sistema y red (hostname, IP, CPU, RAM). | Uso de `psutil`, `platform`, `socket`. |
+| 5 | **Exfiltration** | [T1048 – Exfiltration Over Alternative Protocol](https://attack.mitre.org/techniques/T1048/) / [T1071.003 – Application Layer Protocol: Mail (SMTP)](https://attack.mitre.org/techniques/T1071/003/) | Envía los datos recolectados por correo. | `smtplib` → `smtp.gmail.com:587` con credenciales incrustadas. |
+
+---
+
+## 🧠 Diagrama de cadena de ataque
+
+<details>
+<summary>📊 Mostrar diagrama</summary>
 
 ```mermaid
 flowchart LR
-  %% Nodes
+  %% Nodos principales
   A[/"Removable Media\nInitial Access\nT1091 / T1204"/]
   B[/"Keylogging\nInput Capture / Keylogging\nT1056.001\n(pynput.keyboard)"/]
   C[/"Video Capture\nVideo Capture\nT1125\n(cv2.VideoCapture -> .mp4)"/]
@@ -13,7 +40,7 @@ flowchart LR
   E[/"Exfiltration via SMTP\nT1048 / T1071.003\n(smtplib -> smtp.gmail.com:587)"/]
   F[/"Artefactos / IoCs\nData_Video, Data_Archivo_txt, .pickle, credenciales en claro"/]
 
-  %% Edges / Flow
+  %% Flujo
   A -->|Usuario conecta y ejecuta| B
   B --> C
   B --> D
@@ -21,7 +48,7 @@ flowchart LR
   D --> E
   E --> F
 
-  %% Styling por táctica (colores)
+  %% Estilos
   classDef access fill:#fdebd0,stroke:#e67e22,stroke-width:1px;
   classDef collection fill:#e8f6ff,stroke:#1f78b4,stroke-width:1px;
   classDef discovery fill:#f0f5e6,stroke:#2e8b57,stroke-width:1px;
@@ -35,6 +62,4 @@ flowchart LR
   class E exfil;
   class F artifacts;
 
-  %% Optional: force left-to-right neatness
   linkStyle default stroke:#777,stroke-width:1px;
-
