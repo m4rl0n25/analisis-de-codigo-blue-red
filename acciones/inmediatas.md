@@ -8,7 +8,7 @@ Este cuadro resume las **acciones inmediatas** ante la ejecución de un script m
 
 | **#** | **Acción** | **Descripción / Comando sugerido** |
 |:--:|:--|:--|
-| 1️⃣ | **Desconectar red** | 🔌 Desactiva Wi-Fi o desconecta cable Ethernet.<br>**Windows:** `netsh interface set interface "Wi-Fi" admin=disabled`<br>**Linux:** `nmcli networking off` |
+| 1️⃣ | **Desconectar  cable de_red** | 🔌 Desactiva Wi-Fi o desconecta cable Ethernet.<br>**Windows:** `netsh interface set interface "Wi-Fi" admin=disabled`<br>**Linux:** `nmcli networking off` |
 | 2️⃣ | **Identificar procesos sospechosos** | 📋 Buscar procesos Python activos.<br>**Windows:** `tasklist /FI "IMAGENAME eq python.exe"`<br>**Linux:** `ps aux | grep -i python` |
 | 3️⃣ | **Finalizar proceso malicioso** | 💀 Terminar PID correspondiente.<br>**Windows:** `taskkill /PID <PID> /F`<br>**Linux:** `kill -9 <PID>` |
 | 4️⃣ | **Eliminar artefactos** | 🗑️ Borrar carpetas creadas (`Data_Video`, `Data_Archivo_txt`).<br>**Windows:** `Remove-Item -Recurse -Force "$env:USERPROFILE\Data_Video"`<br>**Linux:** `rm -rf ~/Data_Video ~/Data_Archivo_txt` |
